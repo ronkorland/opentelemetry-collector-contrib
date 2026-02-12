@@ -1,7 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package ottlcontext // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlcontext"
+package ottlotelcol // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlcontext"
 import (
 	"errors"
 
@@ -12,13 +12,13 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxcache"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxcommon"
-	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxcontext"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/ctxotelcol"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/internal/logging"
 )
 
 // ContextName is the name of the context for context.
 // Experimental: *NOTE* this constant is subject to change or removal in the future.
-const ContextName = ctxcontext.Name
+const ContextName = ctxotelcol.Name
 
 var _ zapcore.ObjectMarshaler = (*TransformContext)(nil)
 
@@ -121,10 +121,10 @@ func getCache(tCtx TransformContext) pcommon.Map {
 
 func pathExpressionParser(cacheGetter ctxcache.Getter[TransformContext]) ottl.PathExpressionParser[TransformContext] {
 	return ctxcommon.PathExpressionParser(
-		ctxcontext.Name,
-		ctxcontext.DocRef,
+		ctxotelcol.Name,
+		ctxotelcol.DocRef,
 		cacheGetter,
 		map[string]ottl.PathExpressionParser[TransformContext]{
-			ctxcontext.Name: ctxcontext.PathGetSetter[TransformContext],
+			ctxotelcol.Name: ctxotelcol.PathGetSetter[TransformContext],
 		})
 }
