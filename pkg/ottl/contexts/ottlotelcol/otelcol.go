@@ -1,7 +1,7 @@
 // Copyright The OpenTelemetry Authors
 // SPDX-License-Identifier: Apache-2.0
 
-package ottlotelcol // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlcontext"
+package ottlotelcol // import "github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/contexts/ottlotelcol"
 import (
 	"errors"
 
