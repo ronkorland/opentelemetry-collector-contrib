@@ -57,6 +57,7 @@ require (
 	github.com/ua-parser/uap-go v0.0.0-20240611065828-3a4781585db6 // indirect
 	github.com/zeebo/xxh3 v1.1.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
+	go.opentelemetry.io/collector/client v1.51.1-0.20260212054546-f0da990367b6 // indirect
 	go.opentelemetry.io/collector/component/componentstatus v0.145.1-0.20260212054546-f0da990367b6 // indirect
 	go.opentelemetry.io/collector/consumer/xconsumer v0.145.1-0.20260212054546-f0da990367b6 // indirect
 	go.opentelemetry.io/collector/featuregate v1.51.1-0.20260212054546-f0da990367b6 // indirect
@@ -76,6 +77,7 @@ require (
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	golang.org/x/text v0.34.0 // indirect
+	google.golang.org/grpc v1.78.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
