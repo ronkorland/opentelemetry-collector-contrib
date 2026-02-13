@@ -325,6 +325,7 @@ func TestContextClientAuthAttributes_AllAndKey(t *testing.T) {
 		require.NoError(t, err)
 		assert.Equal(t, "user-123", val)
 	})
+
 	t.Run("specific attribute key present with index", func(t *testing.T) {
 		path := &pathtest.Path[testContext]{
 			N: "client",
