@@ -10,6 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.opentelemetry.io/collector/client"
+	"go.opentelemetry.io/collector/featuregate"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"google.golang.org/grpc/metadata"
 
@@ -473,6 +474,17 @@ func TestContextGrpcMetadata(t *testing.T) {
 		require.NoError(t, err)
 		require.Equal(t, pcommon.NewMap(), val.(pcommon.Map))
 	})
+}
+
+func Test_enableOTelColContextFeatureGate(t *testing.T) {
+	original := enableOTelColContext.IsEnabled()
+	defer func() {
+		require.NoError(t, featuregate.GlobalRegistry().Set(enableOTelColContext.ID(), original))
+	}()
+
+	require.NoError(t, featuregate.GlobalRegistry().Set(enableOTelColContext.ID(), false))
+	_, err := PathGetSetter(&pathtest.Path[testContext]{})
+	assert.Equal(t, errOTelColContextDisabled, err)
 }
 
 type testContext struct{}

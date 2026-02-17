@@ -9,6 +9,7 @@ import (
 	"fmt"
 
 	"go.opentelemetry.io/collector/client"
+	"go.opentelemetry.io/collector/featuregate"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"google.golang.org/grpc/metadata"
 
@@ -18,7 +19,18 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/pkg/ottl/internal/ottlcommon"
 )
 
+var (
+	enableOTelColContext = featuregate.GlobalRegistry().MustRegister(
+		"ottl.contexts.enableOTelColContext",
+		featuregate.StageBeta,
+		featuregate.WithRegisterDescription("Enable the `otelcol` context for OTTL. This allows users using `otelcol.*` paths in their OTTL statements and conditions."))
+	errOTelColContextDisabled = errors.New("OTTL `otelcol` context requires the `ottl.contexts.enableOTelColContext` feature gate to be enabled")
+)
+
 func PathGetSetter[K any](path ottl.Path[K]) (ottl.GetSetter[K], error) {
+	if !enableOTelColContext.IsEnabled() {
+		return nil, errOTelColContextDisabled
+	}
 	switch path.Name() {
 	case "client":
 		return accessClient[K](path)

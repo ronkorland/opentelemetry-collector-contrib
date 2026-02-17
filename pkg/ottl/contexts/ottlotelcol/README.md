@@ -89,3 +89,10 @@ HTTP header names are often normalized to lowercase; consider that when allowlis
 | Use `otelcol` paths in conditions for routing/filtering | Copy `authorization`, `cookie`, or API key headers into attributes/body/resource |
 | Allowlist and validate keys when copying to telemetry   | Copy `otelcol.client.auth.attributes` or full metadata maps into exported data   |
 | Document and review OTTL that uses `otelcol` context    | Assume all client/metadata values are safe to store in telemetry                 |
+
+
+## Feature gate
+
+The `otelcol` context is temporally controlled by the **`ottl.contexts.enableOTelColContext`** [feature gate](https://github.com/open-telemetry/opentelemetry-collector/blob/main/featuregate/README.md#collector-feature-gates).
+This gate is **enabled by default**, so all components using OTTL have access to `otelcol.*` paths unless you explicitly disable it.
+The feature gate is expected to be removed in a future release once the feature is stable; after that, the `otelcol` context will always be available with no opt-in.
