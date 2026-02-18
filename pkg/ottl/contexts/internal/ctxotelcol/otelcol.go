@@ -102,7 +102,7 @@ func accessClientAddr[K any](path ottl.Path[K]) (ottl.GetSetter[K], error) {
 			return cl.Addr.String(), nil
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.client.addr")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.client.addr")
 		},
 	}, nil
 }
@@ -155,7 +155,7 @@ func accessGRPCMetadataKeys[K any]() ottl.StandardGetSetter[K] {
 			return convertGRPCMetadataToMap(md), nil
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.grpc.metadata")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.grpc.metadata")
 		},
 	}
 }
@@ -181,7 +181,7 @@ func accessGRPCMetadataKey[K any](keys []ottl.Key[K]) ottl.StandardGetSetter[K] 
 			return getIndexableValueFromStringArr(ctx, tCtx, keys[1:], mdVal)
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.grpc.metadata")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.grpc.metadata")
 		},
 	}
 }
@@ -248,7 +248,7 @@ func accessClientAuthAttributesKeys[K any]() ottl.StandardGetSetter[K] {
 			return convertAuthDataToMap(cl.Auth), nil
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.client.auth.attributes")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.client.auth.attributes")
 		},
 	}
 }
@@ -284,7 +284,7 @@ func accessClientAuthAttributesKey[K any](keys []ottl.Key[K]) ottl.StandardGetSe
 			return ottlcommon.GetValue(attrVal), nil
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.client.auth.attributes")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.client.auth.attributes")
 		},
 	}
 }
@@ -304,7 +304,7 @@ func accessClientMetadataKeys[K any]() ottl.StandardGetSetter[K] {
 			return convertClientMetadataToMap(cl.Metadata), nil
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.client.metadata")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.client.metadata")
 		},
 	}
 }
@@ -328,7 +328,7 @@ func accessClientMetadataKey[K any](keys []ottl.Key[K]) ottl.StandardGetSetter[K
 			return getIndexableValueFromStringArr(ctx, tCtx, keys[1:], mdVal)
 		},
 		Setter: func(_ context.Context, _ K, _ any) error {
-			return fmt.Errorf(readOnlyPathErrMsg, "context.client.metadata")
+			return fmt.Errorf(readOnlyPathErrMsg, "otelcol.client.metadata")
 		},
 	}
 }

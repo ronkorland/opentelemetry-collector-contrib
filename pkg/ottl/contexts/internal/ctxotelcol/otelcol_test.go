@@ -190,7 +190,7 @@ func TestContextClientMetadata(t *testing.T) {
 
 		err = getter.Set(ctx, testContext{}, newMetadata)
 		require.Error(t, err)
-		assert.Equal(t, `"context.client.metadata" is read-only and cannot be modified`, err.Error())
+		assert.Equal(t, `"otelcol.client.metadata" is read-only and cannot be modified`, err.Error())
 	})
 
 	t.Run("cannot set specific metadata key", func(t *testing.T) {
@@ -211,7 +211,7 @@ func TestContextClientMetadata(t *testing.T) {
 
 		err = getter.Set(ctx, testContext{}, "new-value")
 		require.Error(t, err)
-		assert.Equal(t, `"context.client.metadata" is read-only and cannot be modified`, err.Error())
+		assert.Equal(t, `"otelcol.client.metadata" is read-only and cannot be modified`, err.Error())
 	})
 
 	t.Run("error when accessing metadata key without keys", func(t *testing.T) {
@@ -265,7 +265,7 @@ func TestContextClientAddr(t *testing.T) {
 
 	err = getter.Set(ctx, testContext{}, "ignored")
 	require.Error(t, err)
-	assert.Equal(t, `"context.client.addr" is read-only and cannot be modified`, err.Error())
+	assert.Equal(t, `"otelcol.client.addr" is read-only and cannot be modified`, err.Error())
 }
 
 func TestContextClientAuthAttributes_AllAndKey(t *testing.T) {
@@ -304,7 +304,7 @@ func TestContextClientAuthAttributes_AllAndKey(t *testing.T) {
 
 		err = getter.Set(ctx, testContext{}, map[string]string{"k": "v"})
 		require.Error(t, err)
-		assert.Equal(t, `"context.client.auth.attributes" is read-only and cannot be modified`, err.Error())
+		assert.Equal(t, `"otelcol.client.auth.attributes" is read-only and cannot be modified`, err.Error())
 	})
 
 	t.Run("specific attribute key present", func(t *testing.T) {
@@ -411,7 +411,7 @@ func TestContextGrpcMetadata(t *testing.T) {
 
 		err = getter.Set(ctxWithMD, testContext{}, metadata.MD{})
 		require.Error(t, err)
-		assert.Equal(t, `"context.grpc.metadata" is read-only and cannot be modified`, err.Error())
+		assert.Equal(t, `"otelcol.grpc.metadata" is read-only and cannot be modified`, err.Error())
 	})
 
 	t.Run("get specific grpc metadata key values", func(t *testing.T) {
@@ -434,7 +434,7 @@ func TestContextGrpcMetadata(t *testing.T) {
 
 		err = getter.Set(ctxWithMD, testContext{}, []string{"x"})
 		require.Error(t, err)
-		assert.Equal(t, `"context.grpc.metadata" is read-only and cannot be modified`, err.Error())
+		assert.Equal(t, `"otelcol.grpc.metadata" is read-only and cannot be modified`, err.Error())
 	})
 
 	t.Run("grpc metadata key missing returns nil", func(t *testing.T) {
