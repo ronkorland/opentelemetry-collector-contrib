@@ -29,7 +29,7 @@ const ContextName = ctxotelcol.Name
 
 var _ zapcore.ObjectMarshaler = (*TransformContext)(nil)
 
-// TransformContext its associated hierarchy.
+// TransformContext represents the data passed through the OpenTelemetry Collector by its components.
 type TransformContext struct {
 	cache pcommon.Map
 }
@@ -124,7 +124,7 @@ func NewParser(
 }
 
 func parseEnum(_ *ottl.EnumSymbol) (*ottl.Enum, error) {
-	return nil, errors.New("context context does not provide Enum support")
+	return nil, errors.New("context `otelcol` does not provide Enum support")
 }
 
 func getCache(tCtx *TransformContext) pcommon.Map {

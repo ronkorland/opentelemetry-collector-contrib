@@ -111,8 +111,8 @@ func convertStringArrToValueSlice(vals []string) pcommon.Value {
 	val := pcommon.NewValueSlice()
 	sl := val.Slice()
 	sl.EnsureCapacity(len(vals))
-	for _, val := range vals {
-		sl.AppendEmpty().SetStr(val)
+	for _, v := range vals {
+		sl.AppendEmpty().SetStr(v)
 	}
 	return val
 }
@@ -278,7 +278,7 @@ func accessClientAuthAttributesKey[K any](keys []ottl.Key[K]) ottl.StandardGetSe
 				case pcommon.ValueTypeMap:
 					return ctxutil.GetMapValue[K](ctx, tCtx, attrVal.Map(), keys[1:])
 				default:
-					return nil, fmt.Errorf("attribute %q value is not indexable: %T", *key, attrVal.Type().String())
+					return nil, fmt.Errorf("attribute %q value is not indexable: %s", *key, attrVal.Type().String())
 				}
 			}
 			return ottlcommon.GetValue(attrVal), nil
