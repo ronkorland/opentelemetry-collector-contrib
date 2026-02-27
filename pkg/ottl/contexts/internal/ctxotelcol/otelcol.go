@@ -23,7 +23,9 @@ var (
 	enableOTelColContext = featuregate.GlobalRegistry().MustRegister(
 		"ottl.contexts.enableOTelColContext",
 		featuregate.StageBeta,
-		featuregate.WithRegisterDescription("Enable the `otelcol` context for OTTL. This allows users using `otelcol.*` paths in their OTTL statements and conditions."))
+		featuregate.WithRegisterDescription("Enable the `otelcol` context for OTTL. This allows users using `otelcol.*` paths in their OTTL statements and conditions."),
+		featuregate.WithRegisterReferenceURL("https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/46437"),
+		featuregate.WithRegisterFromVersion("v0.147.0"))
 	errOTelColContextDisabled = errors.New("OTTL `otelcol` context requires the `ottl.contexts.enableOTelColContext` feature gate to be enabled")
 )
 
